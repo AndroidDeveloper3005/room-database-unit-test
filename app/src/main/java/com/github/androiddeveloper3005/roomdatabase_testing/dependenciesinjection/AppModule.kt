@@ -2,10 +2,13 @@ package com.github.androiddeveloper3005.roomdatabase_testing.dependenciesinjecti
 
 import android.content.Context
 import androidx.room.Room
+import com.github.androiddeveloper3005.roomdatabase_testing.data.local.ShoppingDao
 import com.github.androiddeveloper3005.roomdatabase_testing.data.local.ShoppingItemDatabase
 import com.github.androiddeveloper3005.roomdatabase_testing.data.remote.PixabayAPI
 import com.github.androiddeveloper3005.roomdatabase_testing.other.Constants.BASE_URL
 import com.github.androiddeveloper3005.roomdatabase_testing.other.Constants.DATABASE_NAME
+import com.github.androiddeveloper3005.roomdatabase_testing.repository.DefaultShoppingRepository
+import com.github.androiddeveloper3005.roomdatabase_testing.repository.ShoppingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +28,13 @@ object AppModule {
     fun provideShoppingItemDatabase(
         @ApplicationContext context: Context
     ) = Room.databaseBuilder(context,ShoppingItemDatabase::class.java , DATABASE_NAME).build()
+
+    @Singleton
+    @Provides
+    fun provideDefaultShoppingRepository(
+        dao: ShoppingDao,
+        api: PixabayAPI
+    ) = DefaultShoppingRepository(dao,api) as ShoppingRepository
 
     // for room database
     @Singleton
