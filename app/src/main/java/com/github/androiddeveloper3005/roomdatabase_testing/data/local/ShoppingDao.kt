@@ -6,11 +6,12 @@ import androidx.room.*
 
 @Dao
 interface ShoppingDao {
-   @Insert(onConflict = OnConflictStrategy.ABORT)
-     fun insertShoppingItem(shoppingItem: ShoppingItem)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertShoppingItem(shoppingItem: ShoppingItem)
 
     @Delete
-     fun deleteShoppingItem(shoppingItem: ShoppingItem)
+    suspend fun deleteShoppingItem(shoppingItem: ShoppingItem)
 
     @Query("SELECT * FROM shopping_items")
     fun observeAllShoppingItems(): LiveData<List<ShoppingItem>>

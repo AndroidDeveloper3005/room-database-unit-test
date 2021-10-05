@@ -1,5 +1,6 @@
 package com.github.androiddeveloper3005.roomdatabase_testing.data.local
 
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

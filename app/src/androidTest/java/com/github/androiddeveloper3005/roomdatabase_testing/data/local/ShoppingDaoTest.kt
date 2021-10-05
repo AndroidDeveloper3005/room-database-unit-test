@@ -16,38 +16,39 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 
+
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4 ::class)
-@SmallTest // unit test
+@RunWith(AndroidJUnit4::class)
+@SmallTest
 class ShoppingDaoTest {
 
-    @get : Rule
+    @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     private lateinit var database: ShoppingItemDatabase
     private lateinit var dao: ShoppingDao
 
     @Before
-    fun setup(){
+    fun setup() {
         database = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            ShoppingItemDatabase ::class.java
+            ShoppingItemDatabase::class.java
         ).allowMainThreadQueries().build()
         dao = database.shoppingDao()
-
     }
 
     @After
-    fun tearDown(){
+    fun teardown() {
         database.close()
     }
 
-
     @Test
-    fun insertShoppingItemTest() = runBlockingTest {
-        val shoppingItem = ShoppingItem("Himel",50,120f,"url",1)
+    fun insertShoppingItem() = runBlockingTest {
+        val shoppingItem = ShoppingItem("name", 1, 1f, "url", id = 1)
         dao.insertShoppingItem(shoppingItem)
 
-        val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue ()
+        val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
+
         assertThat(allShoppingItems).contains(shoppingItem)
     }
 
@@ -76,3 +77,10 @@ class ShoppingDaoTest {
         assertThat(totalPriceSum).isEqualTo(2 * 10f + 4 * 5.5f)
     }
 }
+
+
+
+
+
+
+

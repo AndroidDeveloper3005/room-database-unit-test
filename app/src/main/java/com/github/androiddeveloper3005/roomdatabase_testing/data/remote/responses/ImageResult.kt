@@ -1,5 +1,6 @@
 package com.github.androiddeveloper3005.roomdatabase_testing.data.remote.responses
 
+
 import com.google.gson.annotations.SerializedName
 
 data class ImageResult(

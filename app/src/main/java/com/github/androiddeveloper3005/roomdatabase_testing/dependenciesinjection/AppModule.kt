@@ -22,32 +22,28 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
-    // for room database
     @Singleton
     @Provides
     fun provideShoppingItemDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(context,ShoppingItemDatabase::class.java , DATABASE_NAME).build()
+    ) = Room.databaseBuilder(context, ShoppingItemDatabase::class.java, DATABASE_NAME).build()
 
     @Singleton
     @Provides
     fun provideDefaultShoppingRepository(
         dao: ShoppingDao,
         api: PixabayAPI
-    ) = DefaultShoppingRepository(dao,api) as ShoppingRepository
+    ) = DefaultShoppingRepository(dao, api) as ShoppingRepository
 
-    // for room database
     @Singleton
     @Provides
     fun provideShoppingDao(
         database: ShoppingItemDatabase
     ) = database.shoppingDao()
 
-
-    // for retrofit
     @Singleton
     @Provides
-    fun providePixalBayAPI() : PixabayAPI {
+    fun providePixabayApi(): PixabayAPI {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
