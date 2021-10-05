@@ -1,0 +1,17 @@
+#Testing with Dagger-Hilt
+
+
+1)add this two dependency on gradle :::::(    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28-alpha')
+    
+2)then create a class in androidtest name that HiltTestRunner
+3)after that we need to add         testInstrumentationRunner "com.github.androiddeveloper3005.roomdatabase_testing.HiltTestRunner"
+ inside build.gradle ---> defaultConfig
+4)then create TestAppModule class 
+5)then remove @RunWith(AndroidJUnit4 ::class) -----> add this @HiltAndroidTest from shoppingDaoTest class and use @Inject annotation in database object
+  and @Named("test_db") this also use inside TestAppModule class 
+  now we need to add rule for our module class     @get : Rule
+    var hiltRule = HiltAndroidRule(this)
+    
+    inside setup function just add hiltRule.inject()
+  
