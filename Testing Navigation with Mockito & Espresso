@@ -1,0 +1,16 @@
+***create navigation
+***add this on a activity xml file as root 
+***after that we need to add direction inside our fragment class
+***now we write our test case in ShoppingFragmentTest class
+*** add this annotation 
+@MediumTest // because now we start intigration testing
+@HiltAndroidTest
+@ExperimentalCoroutinesApi
+
+***also we need to add rule 
+@get : Rule
+var hiltRule = HiltAndroidRule(this)
+
+***now add before and after annotation
+***we can testing our navigation by using  Mockito & Espresso
+***
