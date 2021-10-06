@@ -50,12 +50,12 @@ class ShoppingDaoTest {
     }
 
 
-    @Test
+   /* @Test
     fun testLaunchFragmentInHiltContainer() {
         launchFragmentInHiltContainer<ShoppingFragment> {
 
         }
-    }
+    }*/
 
 
     @Test
