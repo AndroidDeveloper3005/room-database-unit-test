@@ -1,0 +1,25 @@
+*** add this dependency   -------  debugImplementation "androidx.fragment:fragment-testing:1.3.0-alpha08"
+*** then goto project view
+***inside src folder create a debug name folder and create other package  just like com.github.androiddev.roomdatabase_testing
+***inside this package we create a class name hilttestactivity and make it as entry point  ------
+@AndroidEntryPoint
+class HiltTestActivity : AppCompatActivity()
+
+***now copy our manifest file and peste it inside our debug folder and edit like this -------
+---------
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.androiddeveloper3005.roomdatabase_testing" >
+
+    <application>
+        <activity
+            android:name=".HiltTestActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>
+-------
+
+***now goto the android view of our android studio
+***goto the android test folder and create a kotlin file not class------ named hiltextension
+***now inside those file create a inline function and make it generic
