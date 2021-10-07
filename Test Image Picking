@@ -1,0 +1,43 @@
+***first create a adapter named as ImageAdapter
+***now we need to inject glide instance in our adapter class for that we need to craete it inside our appmodule class the provider function name is providesGlideInstance()
+
+***now we need to inject this on our adapter class......
+
+***now we need to craete a listdiffer inside our adapter for performance reason .... for that we need to create a val like this ------named as diffCallBack
+***after creating adapter class we need to create fragment factory class and set adapter into our fragment class 
+***Now Its time to create our test class for imageFragment
+***now write hiltrule and setup function and we need to inject fragment factory
+***now we need to craete our test case-------
+
+ @Test
+    fun `clickImage_popbackstackAndSetImageUrl`(){
+        val navController = mock(NavController::class.java)
+        val imageUrl = "TEST"
+        val testViewModel = ShoppingViewModel(FakeShoppingRepositoryAndroidTest())
+        launchFragmentInHiltContainer<ImagePickFragment>(fragmentFactory = fragmentFactory) {
+            Navigation.setViewNavController(requireView(),navController)
+            imageAdapter.images =  listOf(imageUrl)
+
+        }
+
+        onView(withId(R.id.rvImages)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<ImageAdapter.ImageViewHolder>(
+                0,
+                click()
+            )
+        )
+
+        verify(navController).popBackStack()
+        assertThat(testViewModel.curImageUrl.getOrAwaitValue()).isEqualTo(imageUrl)
+
+    }
+    
+    
+    
+    **** run this three line in terminal
+    adb shell settings put global window_animation_scale 0
+    adb shell settings put global transtion_animation_scale 0
+    adb shell settings put global animator_duration_scale 0
+    
+    
+
