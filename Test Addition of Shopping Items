@@ -1,0 +1,11 @@
+***first inject glide instance inside addshoppingFragment like this  
+class AddShoppingItemFragment @Inject constructor(
+    val glide : RequestManager
+) -----
+
+***then also add this val glide : RequestManager at shoppingfragmentfactory class
+***and add   AddShoppingItemFragment::class.java.name -> AddShoppingItemFragment(glide) this line inside instantiate function
+***then create this function  subscribeToObservers------- and get inserted data into database btnAddShoppingItem.setonclick -----
+***now write our test case inside AddShoppingItemFragmentTest class
+***
+
